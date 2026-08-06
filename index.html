@@ -790,60 +790,99 @@
     </div>
 </footer>
 
-<!-- ========== SUPABASE + FORM HANDLING ========== -->
+    <!-- ========== SUPABASE + FORM HANDLING ========== -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-    
+document.addEventListener('DOMContentLoaded', function () {
     const SUPABASE_URL = 'https://ysfpdbymgcffafybcaud.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_faXDaUSGj3xwMNulakylUA_NoTZEack' ;
-    
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    
-  
-    document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const userType = document.getElementById('user-type').value;
-        const messageEl = document.getElementById('form-message');
-        const submitBtn = document.getElementById('submit-btn');
-        
+    const SUPABASE_ANON_KEY = 'sb_publishable_faXDaUSGj3xmNulaky1UA_NoTZEach';
+
+    const form = document.getElementById('waitlist-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const userTypeInput = document.getElementById('user-type');
+    const submitBtn = document.getElementById('submit-btn');
+    const messageEl = document.getElementById('form-message');
+
+    function showMessage(type, text) {
+        messageEl.className = type;
+        messageEl.textContent = text;
+        messageEl.style.display = 'block';
+    }
+
+    if (!form || !nameInput || !emailInput || !userTypeInput || !submitBtn || !messageEl) {
+        console.error('Form elements are missing from the page.');
+        return;
+    }
+
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim().toLowerCase();
+        const userType = userTypeInput.value;
+
         if (!name || !email || !userType) {
-            messageEl.className = 'error';
-            messageEl.textContent = '⚠️ Please fill in all fields.';
-            messageEl.style.display = 'block';
+            showMessage('error', 'Please complete your name, email, and “I am a…” selection.');
             return;
         }
-        
+
+        if (!window.supabase || !window.supabase.createClient) {
+            showMessage('error', 'Supabase could not load. Please refresh and try again.');
+            console.error('Supabase library did not load.');
+            return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-        
-        try {
-            const { data, error } = await supabase
-                .from('waitlist')
-                .insert([{ name, email, user_type: userType }]);
-            
-            if (error) throw error;
-            
-            messageEl.className = 'success';
-            messageEl.textContent = '🎉 You\'re on the list! We\'ll notify you at ' + email;
-            messageEl.style.display = 'block';
-            document.getElementById('waitlist-form').reset();
-            
-        } catch (error) {
-    console.error('Supabase Error:', error);
+        messageEl.style.display = 'none';
 
-    messageEl.className = 'error';
-    messageEl.textContent = 'Error: ' + error.message;
-    messageEl.style.display = 'block';
-}
-        
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Join Waitlist – It\'s FREE';
+        try {
+            const supabaseClient = window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
+
+            const { error } = await supabaseClient
+                .from('waitlist')
+                .insert([
+                    {
+                        name: name,
+                        email: email,
+                        user_type: userType
+                    }
+                ]);
+
+            if (error) {
+                throw error;
+            }
+
+            showMessage(
+                'success',
+                'You’re on the list! We’ll notify you at ' + email
+            );
+
+            form.reset();
+
+        } catch (error) {
+            console.error('Supabase Error:', error);
+
+            const extraInfo = error.code ? ' (' + error.code + ')' : '';
+            showMessage(
+                'error',
+                'Database error: ' + (error.message || 'Unknown error') + extraInfo
+            );
+
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+                '<i class="fas fa-rocket"></i> Join Waitlist – It\'s FREE';
+        }
     });
+});
 </script>
 
 </body>
 </html>
+
