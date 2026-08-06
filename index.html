@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ClearDeal – Dubai's Trusted Real Estate Platform</title>
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+   
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== RESET ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.6;
+            background: #0a0a1a;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* ========== HERO SECTION WITH BG ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 30, 0.85) 0%, rgba(20, 20, 50, 0.75) 50%, rgba(10, 10, 30, 0.85) 100%),
+                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"%3E%3Crect fill="%231a1a3e" width="1200" height="800"/%3E%3Cpath d="M0 500L200 450L400 500L600 420L800 480L1000 400L1200 460L1200 800L0 800Z" fill="%232a2a5e" opacity="0.3"/%3E%3Cpath d="M0 550L150 500L300 550L450 490L600 540L750 480L900 530L1050 470L1200 520L1200 800L0 800Z" fill="%23c9a84c" opacity="0.08"/%3E%3C/svg%3E') center/cover;
+            padding: 40px 0 60px;
+            border-bottom: 3px solid #c9a84c;
+        }
+        
+        /* ========== HEADER OVERLAY ========== */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            z-index: 10;
+            background: rgba(10, 10, 30, 0.6);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        /* ========== CIRCULAR LOGO ========== */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c9a84c, #f5d98e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+        
+        .logo-circle:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-circle span {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #0a0a1a;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .logo-text .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text .brand span {
+            color: #c9a84c;
+        }
+        
+        .logo-text .tagline {
+            font-size: 10px;
+            color: #aaa;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ========== NAV ========== */
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        
+        .nav-links a:hover {
+            color: #c9a84c;
+        }
+        
+        .nav-links .cta-nav {
+            background: #c9a84c;
+            color: #0a0a1a;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        
+        .nav-links .cta-nav:hover {
+            background: #f5d98e;
+            color: #0a0a1a;
+            transform: scale(1.02);
+        }
+        
+        /* ========== HERO CONTENT ========== */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin-top: 40px;
+        }
+        
+        .hero-content .badge-gold {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #c9a84c;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 58px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+        
+        .hero-content h1 span {
+            color: #c9a84c;
+        }
+        
+        .hero-content .sub-title {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+        
+        .hero-content .description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+        }
+        
+        /* ========== HERO BADGES ========== */
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .hero-badges .badge {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .hero-badges .badge i {
+            color: #c9a84c;
+            font-size: 16px;
+        }
+        
+        /* ========== FORM - LUXURY STYLE ========== */
+        .signup-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 36px 40px;
+            border-radius: 16px;
+            text-align: left;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .signup-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        
+        .signup-form p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .signup-form input,
+        .signup-form select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .signup-form input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .signup-form select {
+            color: #ffffff;
+            appearance: none;
+            cursor: pointer;
+        }
+        
+        .signup-form select option {
+            background: #1a1a3e;
+            color: #ffffff;
+        }
+        
+        .signup-form input:focus,
+        .signup-form select:focus {
+            border-color: #c9a84c;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+        }
+        
+        .signup-form button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #c9a84c, #f5d98e);
+            color: #0a0a1a;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        
+        .signup-form button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+        }
+        
+        .signup-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        #form-message {
+            margin-top: 14px;
+            font-weight: 500;
+            font-size: 14px;
+            display: none;
+        }
+        
+        #form-message.success {
+            color: #7dd87d;
+            display: block;
+        }
+        
+        #form-message.error {
+            color: #ff6b6b;
+            display: block;
+        }
+        
+        /* ========== FEATURES ========== */
+        .features {
+            padding: 70px 0 60px;
+            background: #0a0a1a;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        
+        .features h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        
+        .features h2 span {
+            color: #c9a84c;
+        }
+        
+        .features .section-sub {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 48px;
+            font-size: 16px;
+            font-weight: 300;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 28px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border 0.2s ease, transform 0.2s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: rgba(201, 168, 76, 0.2);
+            transform: translateY(-4px);
+        }
+        
+        .feature-card i {
+            font-size: 32px;
+            color: #c9a84c;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            font-weight: 300;
+        }
+        
+        /* ========== PRICING ========== */
+        .pricing {
+            padding: 70px 0 60px;
+            background: #0f0f2a;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+        }
+        
+        .pricing h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        
+        .pricing h2 span {
+            color: #c9a84c;
+        }
+        
+        .pricing .section-sub {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 48px;
+            font-size: 16px;
+            font-weight: 300;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            transition: border 0.2s ease, transform 0.2s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .pricing-card.popular {
+            border-color: #c9a84c;
+            background: rgba(201, 168, 76, 0.05);
+        }
+        
+        .pricing-card .price {
+            font-size: 38px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .pricing-card .price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .pricing-card .plan-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 16px 0 20px;
+            padding: 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: left;
+        }
+        
+        .pricing-card ul li {
+            padding: 4px 0;
+        }
+        
+        .pricing-card ul li i {
+            color: #c9a84c;
+            margin-right: 8px;
+            width: 18px;
+        }
+        
+        .pricing-card .btn-outline {
+            display: inline-block;
+            padding: 10px 32px;
+            border: 1px solid #c9a84c;
+            border-radius: 30px;
+            color: #c9a84c;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        
+        .pricing-card .btn-outline:hover {
+            background: #c9a84c;
+            color: #0a0a1a;
+        }
+        
+        .popular-tag {
+            background: #c9a84c;
+            color: #0a0a1a;
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            background: #0a0a1a;
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+        
+        footer .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        footer .footer-logo span {
+            color: #c9a84c;
+        }
+        
+        footer .footer-tagline {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            margin-top: 12px;
+        }
+        
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content .sub-title {
+                font-size: 16px;
+            }
+            
+            .hero-badges {
+                gap: 16px;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .signup-form {
+                padding: 24px 20px;
+            }
+            
+            .nav-links a {
+                margin-left: 14px;
+                font-size: 12px;
+            }
+            
+            .nav-links .cta-nav {
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+            
+            .logo-circle {
+                width: 42px;
+                height: 42px;
+            }
+            
+            .logo-circle span {
+                font-size: 14px;
+            }
+            
+            .logo-text .brand {
+                font-size: 18px;
+            }
+            
+            .logo-text .tagline {
+                font-size: 9px;
+            }
+            
+            header {
+                padding: 12px 0;
+            }
+            
+            .features h2,
+            .pricing h2 {
+                font-size: 26px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero {
+                min-height: 90vh;
+                padding: 60px 0 40px;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero-badges .badge {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+    <div class="container">
+        <a href="#" class="logo">
+            <div class="logo-circle">
+                <span>CD</span>
+            </div>
+            <div class="logo-text">
+                <span class="brand">Clear<span>Deal</span></span>
+                <span class="tagline">"Today's Honesty is Tomorrow's Better"</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#signup" class="cta-nav">Join Now</a>
+        </div>
+    </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="signup">
+    <div class="container">
+        <div class="hero-content">
+            <div class="badge-gold">🌟 Dubai's Most Trusted Platform</div>
+            
+            <h1>Find Your <span>Dream Property</span> in Dubai</h1>
+            <p class="sub-title">"Today's Honesty is Tomorrow's Better"</p>
+            <p class="description">
+                Connect with verified RERA-licensed agents. No scams, no fake listings. 
+                Safe, transparent, and trusted.
+            </p>
+            
+            <div class="hero-badges">
+                <span class="badge"><i class="fas fa-shield-alt"></i> Verified Agents</span>
+                <span class="badge"><i class="fas fa-check-circle"></i> No Scams</span>
+                <span class="badge"><i class="fas fa-building"></i> Dubai Properties</span>
+            </div>
+            
+            <!-- ===== SIGNUP FORM ===== -->
+            <div class="signup-form">
+                <h3>🚀 Join the Waiting List</h3>
+                <p>Be the first to know when we launch. Get early access &amp; exclusive benefits.</p>
+                
+                <form id="waitlist-form">
+                    <input type="text" id="name" placeholder="Your Full Name" required />
+                    <input type="email" id="email" placeholder="Your Email Address" required />
+                    <select id="user-type" required>
+                        <option value="">I am a...</option>
+                        <option value="agent">Real Estate Agent</option>
+                        <option value="buyer">Property Buyer / Investor</option>
+                        <option value="both">Both (Agent &amp; Buyer)</option>
+                    </select>
+                    <button type="submit" id="submit-btn">
+                        <i class="fas fa-rocket"></i> Join Waitlist – It's FREE
+                    </button>
+                </form>
+                
+                <div id="form-message"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features" id="features">
+    <div class="container">
+        <h2>Why <span>ClearDeal</span>?</h2>
+        <p class="section-sub">We make Dubai real estate safe, transparent, and scam-free.</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-user-check"></i>
+                <h4>Verified Agents Only</h4>
+                <p>Every agent is checked against RERA records. No license = no listing.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-home"></i>
+                <h4>Real Listings</h4>
+                <p>We verify property photos, prices, and locations. No fake ads.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-handshake"></i>
+                <h4>Safe Transactions</h4>
+                <p>Escrow protection so your money is safe until the deal is done.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-star"></i>
+                <h4>Agent Ratings</h4>
+                <p>Real buyer reviews help you choose the best and most trusted agents.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2>Simple <span>Pricing</span></h2>
+        <p class="section-sub">For agents who want verified buyer leads.</p>
+        
+        <div class="pricing-grid">
+            <!-- Starter -->
+            <div class="pricing-card">
+                <div class="plan-name">Starter</div>
+                <div class="price">$49 <span>/mo</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Verified badge</li>
+                    <li><i class="fas fa-check"></i> 5 property listings</li>
+                    <li><i class="fas fa-check"></i> Basic lead alerts</li>
+                </ul>
+                <a href="#signup" class="btn-outline">Get Started</a>
+            </div>
+            
+           
+            <div class="pricing-card popular">
+                <div class="plan-name">
+                    Pro
+                    <span class="popular-tag">Popular</span>
+                </div>
+                <div class="price">$99 <span>/mo</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Verified + Featured</li>
+                    <li><i class="fas fa-check"></i> 25 property listings</li>
+                    <li><i class="fas fa-check"></i> Priority lead alerts</li>
+                    <li><i class="fas fa-check"></i> Buyer intent data</li>
+                </ul>
+                <a href="#signup" class="btn-outline">Get Started</a>
+            </div>
+            
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="price">$249 <span>/mo</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Verified + Premium</li>
+                    <li><i class="fas fa-check"></i> Unlimited listings</li>
+                    <li><i class="fas fa-check"></i> Real-time lead alerts</li>
+                    <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                </ul>
+                <a href="#signup" class="btn-outline">Get Started</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <div class="footer-logo">Clear<span>Deal</span></div>
+        <div class="footer-tagline">"Today's Honesty is Tomorrow's Better"</div>
+        <p>&copy; 2026 ClearDeal. Built with trust in Dubai. 🇦🇪</p>
+    </div>
+</footer>
+
+<!-- ========== SUPABASE + FORM HANDLING ========== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    
+    const SUPABASE_URL = 'https://ysfpdbymgcffafybcaud.supabase.co';
+    const SUPABASE_ANON_KEY = sb_publishable_faXDaUSGj3xwMNulakylUA_NoTZEack 
+    
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    
+  
+    document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const userType = document.getElementById('user-type').value;
+        const messageEl = document.getElementById('form-message');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        if (!name || !email || !userType) {
+            messageEl.className = 'error';
+            messageEl.textContent = '⚠️ Please fill in all fields.';
+            messageEl.style.display = 'block';
+            return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        
+        try {
+            const { data, error } = await supabase
+                .from('waitlist')
+                .insert([{ name, email, user_type: userType }]);
+            
+            if (error) throw error;
+            
+            messageEl.className = 'success';
+            messageEl.textContent = '🎉 You\'re on the list! We\'ll notify you at ' + email;
+            messageEl.style.display = 'block';
+            document.getElementById('waitlist-form').reset();
+            
+        } catch (error) {
+            messageEl.className = 'error';
+            messageEl.textContent = '❌ Something went wrong. Please try again.';
+            messageEl.style.display = 'block';
+            console.error('Supabase Error:', error);
+        }
+        
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Join Waitlist – It\'s FREE';
+    });
+</script>
+
+</body>
+</html>
