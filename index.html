@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ClearDeal – Dubai's Trusted Real Estate Platform</title>
     
-    
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     
-   
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -749,7 +749,7 @@
                 <a href="#signup" class="btn-outline">Get Started</a>
             </div>
             
-           
+            <!-- Popular -->
             <div class="pricing-card popular">
                 <div class="plan-name">
                     Pro
@@ -794,13 +794,18 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-    
+    // ============================================================
+    // 🔑 SUPABASE CREDENTIALS - REPLACE WITH YOUR ACTUAL VALUES
+    // ============================================================
     const SUPABASE_URL = 'https://ysfpdbymgcffafybcaud.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_faXDaUSGj3xwMNulakylUA_NoTZEack';
+    const SUPABASE_ANON_KEY = 'sb_publishable_faXDaUSGj3xmNulaky1UA_NoTZEach';
     
+    // Initialize Supabase client
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     
-  
+    // ============================================================
+    // FORM SUBMISSION
+    // ============================================================
     document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -810,6 +815,7 @@
         const messageEl = document.getElementById('form-message');
         const submitBtn = document.getElementById('submit-btn');
         
+        // Validation
         if (!name || !email || !userType) {
             messageEl.className = 'error';
             messageEl.textContent = '⚠️ Please fill in all fields.';
@@ -817,16 +823,19 @@
             return;
         }
         
+        // Disable button
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
         
         try {
+            // Insert into Supabase
             const { data, error } = await supabase
                 .from('waitlist')
                 .insert([{ name, email, user_type: userType }]);
             
             if (error) throw error;
             
+            // Success
             messageEl.className = 'success';
             messageEl.textContent = '🎉 You\'re on the list! We\'ll notify you at ' + email;
             messageEl.style.display = 'block';
@@ -839,6 +848,7 @@
             console.error('Supabase Error:', error);
         }
         
+        // Re-enable button
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Join Waitlist – It\'s FREE';
     });
